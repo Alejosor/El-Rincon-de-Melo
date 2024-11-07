@@ -1,4 +1,9 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
+<?php
 session_start();
 if (!isset($_SESSION['admin_logged_in'])) {
     header("Location: login_admin.php");
@@ -7,12 +12,29 @@ if (!isset($_SESSION['admin_logged_in'])) {
 
 require 'includes/db_admin.php';
 
+// Habilitar la visualización de errores para diagnóstico
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 if (isset($_GET['id'])) {
     $id_orden = $_GET['id'];
-    $query = $pdo->prepare("SELECT * FROM detalle_ordenes WHERE id_orden = :id_orden");
-    $query->bindParam(':id_orden', $id_orden);
+
+    // Obtener los detalles de la orden
+    $query = $pdo->prepare("
+        SELECT do.id_producto, p.nombre, do.cantidad, do.subtotal 
+        FROM detalle_ordenes do
+        JOIN productos p ON do.id_producto = p.id
+        WHERE do.id_orden = :id_orden
+    ");
+    $query->bindParam(':id_orden', $id_orden, PDO::PARAM_INT);
     $query->execute();
     $detalles = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    // Validación en caso de que no haya detalles
+    if (empty($detalles)) {
+        die("No se encontraron detalles para la orden #$id_orden.");
+    }
 } else {
     header("Location: ordenes.php");
     exit;
@@ -29,7 +51,7 @@ if (isset($_GET['id'])) {
 </head>
 <body>
     <header>
-        <h1>Detalle de Orden #<?php echo $id_orden; ?></h1>
+        <h1>Detalle de Orden #<?php echo htmlspecialchars($id_orden); ?></h1>
         <a href="ordenes.php">Volver a Órdenes</a>
     </header>
     <main>
@@ -42,16 +64,11 @@ if (isset($_GET['id'])) {
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($detalles as $detalle): 
-                    $query_producto = $pdo->prepare("SELECT nombre FROM productos WHERE id = :id_producto");
-                    $query_producto->bindParam(':id_producto', $detalle['id_producto']);
-                    $query_producto->execute();
-                    $producto = $query_producto->fetch(PDO::FETCH_ASSOC);
-                ?>
+                <?php foreach ($detalles as $detalle): ?>
                     <tr>
-                        <td><?php echo $producto['nombre']; ?></td>
-                        <td><?php echo $detalle['cantidad']; ?></td>
-                        <td><?php echo $detalle['subtotal']; ?></td>
+                        <td><?php echo htmlspecialchars($detalle['nombre']); ?></td>
+                        <td><?php echo htmlspecialchars($detalle['cantidad']); ?></td>
+                        <td>S/<?php echo number_format($detalle['subtotal'], 2); ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
