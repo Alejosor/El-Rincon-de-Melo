@@ -1,0 +1,55 @@
+header {
+    background-color: #f4f4f4;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.logout-button {
+    color: red;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #f4f4f4;
+}
+
+.productos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.producto {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.producto h3 {
+    margin: 10px 0;
+}
+
+form {
+    margin-top: 10px;
+}
