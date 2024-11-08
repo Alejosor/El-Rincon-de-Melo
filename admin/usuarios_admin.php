@@ -16,14 +16,13 @@ $filtro_tipo = $_GET['tipo'] ?? 'Todos';
 
 // Construir la consulta con filtro
 if ($filtro_tipo === 'Todos') {
-    $query = $pdo->query("SELECT nombre, email, 'Cliente' AS tipo FROM clientes
+    $query = $pdo->query("SELECT id, nombre, email, 'Cliente' AS tipo FROM clientes
                           UNION
-                          SELECT nombre, email, 'Administrador' AS tipo FROM administradores
+                          SELECT id, nombre, email, 'Administrador' AS tipo FROM administradores
                           ORDER BY tipo, nombre");
 } else {
-    $query = $pdo->prepare("SELECT nombre, email, :tipo AS tipo FROM " . 
-                           ($filtro_tipo === 'Administrador' ? 'administradores' : 'clientes') . 
-                           " ORDER BY nombre");
+    $tabla = $filtro_tipo === 'Administrador' ? 'administradores' : 'clientes';
+    $query = $pdo->prepare("SELECT id, nombre, email, :tipo AS tipo FROM $tabla ORDER BY nombre");
     $query->bindParam(':tipo', $filtro_tipo);
     $query->execute();
 }
@@ -73,8 +72,8 @@ $usuarios = $query->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo htmlspecialchars($usuario['email']); ?></td>
                     <td><?php echo htmlspecialchars($usuario['tipo']); ?></td>
                     <td>
-                        <a href="editar_usuario.php?tipo=<?php echo $usuario['tipo']; ?>&email=<?php echo $usuario['email']; ?>" class="btn action-btn">Editar</a>
-                        <a href="eliminar_usuario.php?tipo=<?php echo $usuario['tipo']; ?>&email=<?php echo $usuario['email']; ?>" class="btn action-btn" onclick="return confirm('¿Estás seguro de eliminar este usuario?');">Eliminar</a>
+                        <a href="editar_usuario.php?id=<?php echo $usuario['id']; ?>&tipo=<?php echo $usuario['tipo']; ?>" class="btn action-btn">Editar</a>
+                        <a href="eliminar_usuario.php?id=<?php echo $usuario['id']; ?>&tipo=<?php echo $usuario['tipo']; ?>" class="btn action-btn" onclick="return confirm('¿Estás seguro de eliminar este usuario?');">Eliminar</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

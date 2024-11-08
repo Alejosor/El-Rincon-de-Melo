@@ -65,12 +65,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Usuario</title>
-    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="/El_Rincon_de_Melo/assets/css/global.css"> <!-- Ruta absoluta -->
+    <link rel="stylesheet" href="/El_Rincon_de_Melo/assets/css/admin/editar_usuario.css">
 </head>
 <body>
-    <header>
+    <header class="nav-header">
         <h1>Editar Usuario - <?php echo htmlspecialchars($usuario['nombre']); ?></h1>
-        <a href="usuarios_admin.php">Volver a Gestión de Usuarios</a>
+        <a href="usuarios_admin.php" class="return-button">Volver</a>
     </header>
     <main>
         <form action="editar_usuario.php?id=<?php echo $id; ?>&tipo=<?php echo $tipo; ?>" method="POST">
@@ -82,8 +83,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <button type="submit">Guardar Cambios</button>
         </form>
+
+        <!-- Alerta de error -->
         <?php if ($error): ?>
-            <p style="color:red;"><?php echo $error; ?></p>
+            <div class="alert-card">
+                <p><?php echo htmlspecialchars($error); ?></p>
+            </div>
         <?php endif; ?>
     </main>
 </body>

@@ -1,0 +1,97 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-header {
+    background-color: #4793AF; /* Azul suave */
+    color: white;
+    padding: 20px 30px;
+    text-align: center;
+    position: relative;
+}
+
+.nav-header h1 {
+    font-size: 28px;
+    margin: 0;
+}
+
+.return-button {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background-color: #DD5746; /* Rojo ladrillo */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.return-button:hover {
+    background-color: #8B322C; /* Rojo oscuro */
+}
+
+main {
+    max-width: 600px;
+    margin: 30px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+form input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+form button {
+    padding: 10px;
+    background-color: #FFC470; /* Naranja claro */
+    color: #1a1a1a; /* Texto negro suave */
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #DD5746; /* Rojo ladrillo */
+    color: white;
+}
+
+/* Alert Card */
+.alert-card {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #DD5746; /* Rojo ladrillo */
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
