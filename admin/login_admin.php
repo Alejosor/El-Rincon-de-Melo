@@ -45,20 +45,22 @@ if (isset($_POST['login'])) {
     <link rel="stylesheet" href="/El_Rincon_de_Melo/assets/css/admin/login_admin.css">
 </head>
 <body>
-    <div class="login-container">
-        <h1>Login Administrador</h1>
-        <form action="login_admin.php" method="POST">
-            <input type="text" name="username" placeholder="Usuario" required>
-            <input type="password" name="password" placeholder="Contraseña" required>
-            <button type="submit" name="login">Iniciar Sesión</button>
-        </form>
-    </div>
-
-    <!-- Manejo de errores dentro del HTML -->
-    <?php if (isset($error)): ?>
-        <div class="alert-card">
-            <p><?php echo htmlspecialchars($error); ?></p>
+    <div class="main-wrapper"> <!-- Nuevo contenedor principal -->
+        <div class="login-container">
+            <h1>Login Administrador</h1>
+            <form action="login_admin.php" method="POST">
+                <input type="text" name="username" placeholder="Usuario" required>
+                <input type="password" name="password" placeholder="Contraseña" required>
+                <button type="submit" name="login">Iniciar Sesión</button>
+            </form>
         </div>
-    <?php endif; ?>
+
+        <!-- Alerta debajo del formulario -->
+        <?php if (isset($error)): ?>
+            <div class="alert-card">
+                <p><?php echo htmlspecialchars($error); ?></p>
+            </div>
+        <?php endif; ?>
+    </div>
 </body>
 </html>

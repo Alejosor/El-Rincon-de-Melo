@@ -2,8 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-?>
-<?php
+
 session_start();
 if (!isset($_SESSION['admin_logged_in'])) {
     header("Location: login_admin.php");
@@ -15,25 +14,39 @@ require 'includes/db_admin.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = trim($_POST['nombre']);
     $email = trim($_POST['email']);
-    $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
+    $password = trim($_POST['password']);
     $tipo = $_POST['tipo'];
 
-    if ($tipo === 'Administrador') {
-        $query = $pdo->prepare("INSERT INTO administradores (nombre, email, password) VALUES (:nombre, :email, :password)");
+    if (empty($nombre) || empty($email) || empty($password)) {
+        $error = "Todos los campos son obligatorios.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = "Por favor, ingrese un email válido.";
     } else {
-        $query = $pdo->prepare("INSERT INTO clientes (nombre, email, password) VALUES (:nombre, :email, :password)");
-    }
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    $query->bindParam(':nombre', $nombre);
-    $query->bindParam(':email', $email);
-    $query->bindParam(':password', $password);
+        if ($tipo === 'Administrador') {
+            $query = $pdo->prepare("INSERT INTO administradores (nombre, email, password) VALUES (:nombre, :email, :password)");
+        } else {
+            $query = $pdo->prepare("INSERT INTO clientes (nombre, email, password) VALUES (:nombre, :email, :password)");
+        }
 
-    try {
-        $query->execute();
-        header("Location: usuarios_admin.php");
-        exit;
-    } catch (PDOException $e) {
-        $error = "Error: " . $e->getMessage();
+        $query->bindParam(':nombre', $nombre);
+        $query->bindParam(':email', $email);
+        $query->bindParam(':password', $hashedPassword);
+
+        try {
+            $query->execute();
+            header("Location: usuarios_admin.php");
+            exit;
+        } catch (PDOException $e) {
+            if ($e->getCode() == 23000) { // Duplicado de entrada
+                $error = "El correo electrónico ya está registrado. Por favor, usa uno diferente.";
+            } elseif (strpos($e->getMessage(), 'SQLSTATE[HY000]') !== false) { // Error de conexión
+                $error = "Error de conexión a la base de datos. Por favor, verifica tu conexión.";
+            } else { // Otros errores
+                $error = "Error inesperado al crear el usuario. Por favor, inténtalo de nuevo más tarde.";
+            }
+        }
     }
 }
 ?>
@@ -44,14 +57,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuevo Usuario</title>
-    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="/El_Rincon_de_Melo/assets/css/global.css"> <!-- Ruta absoluta -->
+    <link rel="stylesheet" href="/El_Rincon_de_Melo/assets/css/admin/nuevo_usuario.css">
 </head>
 <body>
-    <header>
-        <h1>Crear Nuevo Usuario</h1>
-        <a href="usuarios_admin.php">Volver a Gestión de Usuarios</a>
+    <header class="nav-header">
+        <h1>El Rincón de Melo</h1>
+        <a href="index_admin.php" class="cancel-nav-button">Cancelar</a>
     </header>
     <main>
+        <h2>Crear Nuevo Usuario</h2>
         <form action="nuevo_usuario.php" method="POST">
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" required>
@@ -70,9 +85,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <button type="submit">Crear Usuario</button>
         </form>
-        <?php if (isset($error)): ?>
-            <p style="color:red;"><?php echo $error; ?></p>
-        <?php endif; ?>
     </main>
+
+    <!-- Mensaje de error con estilo, fuera del contenedor -->
+    <?php if (isset($error)): ?>
+        <div class="alert-card">
+            <p><?php echo htmlspecialchars($error); ?></p>
+        </div>
+    <?php endif; ?>
 </body>
 </html>

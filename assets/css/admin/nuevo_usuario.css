@@ -1,0 +1,114 @@
+/* Header de navegación */
+.nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4793AF; /* Azul suave */
+    padding: 20px 30px;
+    color: white;
+    border-radius: 5px;
+}
+
+.nav-header h1 {
+    font-size: 28px; /* Aumentar tamaño de letra del header */
+    margin: 0;
+    font-weight: bold;
+}
+
+.cancel-nav-button {
+    background-color: #DD5746; /* Rojo ladrillo */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none; /* Quitar subrayado */
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.cancel-nav-button:hover {
+    background-color: #8B322C; /* Rojo oscuro */
+    text-decoration: none; /* Sin subrayado al pasar el cursor */
+}
+
+/* Centrado del formulario */
+main {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Estilo para h2 en el formulario */
+main h2 {
+    font-size: 22px;
+    color: #4793AF;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 2px solid #FFC470; /* Línea decorativa */
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Input y select del formulario */
+form label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+    text-align: left;
+}
+
+form input, form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #FFC470; /* Naranja claro */
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #DD5746; /* Rojo ladrillo */
+}
+
+/* Tarjeta de alerta */
+.alert-card {
+    max-width: 400px; /* Igual al formulario */
+    margin: 15px auto; /* Espaciado y centrado */
+    padding: 15px;
+    background-color: #DD5746; /* Rojo ladrillo */
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
