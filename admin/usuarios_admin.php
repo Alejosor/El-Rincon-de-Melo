@@ -32,10 +32,10 @@ $usuarios = $query->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <header>
         <h1>Gestión de Usuarios</h1>
-        <a href="index_admin.php">Volver al Panel</a>
-        <a href="nuevo_usuario.php">Crear Nuevo Usuario</a>
+        <a href="logout.php" class="logout-button">Cerrar Sesión</a>
     </header>
     <main>
+        <a href="nuevo_usuario.php" class="btn">Crear Nuevo Usuario</a>
         <table>
             <thead>
                 <tr>
@@ -54,8 +54,8 @@ $usuarios = $query->fetchAll(PDO::FETCH_ASSOC);
                         <td><?php echo htmlspecialchars($usuario['email']); ?></td>
                         <td><?php echo htmlspecialchars($usuario['tipo']); ?></td>
                         <td>
-                            <a href="editar_usuario.php?id=<?php echo $usuario['id']; ?>&tipo=<?php echo $usuario['tipo']; ?>">Editar</a>
-                            <a href="eliminar_usuario.php?id=<?php echo $usuario['id']; ?>&tipo=<?php echo $usuario['tipo']; ?>" onclick="return confirm('¿Estás seguro de eliminar este usuario?');">Eliminar</a>
+                            <a href="editar_usuario.php?id=<?php echo $usuario['id']; ?>&tipo=<?php echo $usuario['tipo']; ?>" class="btn">Editar</a>
+                            <a href="eliminar_usuario.php?id=<?php echo $usuario['id']; ?>&tipo=<?php echo $usuario['tipo']; ?>" class="btn" onclick="return confirm('¿Estás seguro de eliminar este usuario?');">Eliminar</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

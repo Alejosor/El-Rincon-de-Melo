@@ -1,0 +1,89 @@
+/* Centrado de Contenedor del Login */
+.login-container {
+    max-width: 400px;
+    margin: 0 auto; /* Centra horizontalmente */
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: absolute;
+    top: 50%; /* Centra verticalmente */
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login-container h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #4793AF; /* Azul suave */
+}
+
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #FFC470; /* Naranja claro */
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-container button:hover {
+    background-color: #DD5746; /* Rojo ladrillo */
+}
+
+/* Tarjeta de Alerta */
+.alert-card {
+    max-width: 400px; /* Mismo ancho que el formulario */
+    margin: 15px auto; /* Centra horizontalmente y deja espacio superior */
+    padding: 15px;
+    background-color: #DD5746; /* Rojo ladrillo */
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.alert-card p {
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Animación de Entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .login-container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .alert-card {
+        width: 90%;
+    }
+}
