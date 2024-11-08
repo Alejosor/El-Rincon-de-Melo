@@ -1,0 +1,118 @@
+/* Contenedor principal para formulario y previsualización */
+.form-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 50px auto;
+}
+
+/* Contenedor de previsualización de imagen */
+.form-image-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-upload-container {
+    border: 2px dashed #ddd;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px; /* Aumenta el tamaño máximo */
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.image-preview {
+    width: 100%;
+    height: 300px; /* Aumenta la altura del contenedor */
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.image-preview__image {
+    max-width: 100%;
+    max-height: 100%;
+    display: none; /* Se muestra después de cargar */
+}
+
+.image-preview__default-text {
+    color: #aaa;
+    font-size: 14px;
+}
+
+/* Estilo del formulario */
+.form-wrapper {
+    flex: 2;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Botones */
+button {
+    background-color: #FFC470;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    width: 100%;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #DD5746;
+    color: white;
+}
+
+/* Mensaje de alerta */
+.alert-card {
+    margin-top: 20px;
+    background-color: #DD5746;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Botón de volver */
+.return-button {
+    background-color: #DD5746;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.return-button:hover {
+    background-color: #8B322C;
+    text-decoration: none;
+}
