@@ -1,0 +1,155 @@
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4793AF; /* Azul suave */
+    color: white;
+    padding: 20px 30px;
+    text-align: center;
+    position: relative;
+}
+
+header h1 {
+    font-size: 28px;
+    margin: 0;
+}
+
+/* Botón Regresar */
+.return-button {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background-color: #DD5746; /* Rojo ladrillo */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.return-button:hover {
+    background-color: #8B322C; /* Rojo oscuro */
+    color: white;
+}
+
+/* Contenedor de filtros y botón */
+.filter-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #f9f9f9; /* Fondo claro */
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Botón Crear Nuevo Usuario */
+.create-btn {
+    background-color: #FFC470; /* Naranja claro */
+    color: #1a1a1a; /* Texto negro suave */
+    font-weight: bold;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.create-btn:hover {
+    background-color: #DD5746; /* Rojo ladrillo */
+    color: white; /* Texto blanco en hover */
+}
+
+/* Estilo del formulario de filtro */
+.filter-form {
+    display: flex;
+    align-items: center;
+}
+
+.filter-form label {
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.filter-form select {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    transition: border-color 0.3s ease;
+}
+
+.filter-form select:hover {
+    border-color: #4793AF; /* Azul suave al pasar el cursor */
+}
+
+.filter-form select:focus {
+    outline: none;
+    border-color: #FFC470; /* Naranja claro al enfocarse */
+}
+
+/* Main content */
+main {
+    max-width: 1000px;
+    margin: 30px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #4793AF; /* Azul suave */
+    color: white;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Botones en la tabla */
+table td a.action-btn {
+    margin-right: 5px;
+    padding: 5px 10px;
+    font-size: 14px; /* Tamaño legible */
+    font-weight: bold; /* Negrita */
+    background-color: #FFC470; /* Naranja claro */
+    color: #1a1a1a; /* Texto negro suave */
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+table td a.action-btn:hover {
+    background-color: #DD5746; /* Rojo ladrillo */
+    color: white; /* Texto blanco en hover */
+}
