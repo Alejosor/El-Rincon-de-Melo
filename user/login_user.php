@@ -2,6 +2,8 @@
 session_start();
 require 'includes/db_user.php';
 
+$error = null;
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
@@ -28,25 +30,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login de Cliente</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/El_Rincon_de_Melo/assets/css/global.css">
+    <link rel="stylesheet" href="/El_Rincon_de_Melo/assets/css/user/login_user.css">
 </head>
 <body>
-    <header>
-        <h1>Login de Cliente</h1>
-    </header>
-    <main>
-        <form action="login_user.php" method="POST">
-            <label for="email">Email:</label>
-            <input type="email" name="email" required>
+    <div class="main-wrapper">
+        <div class="login-container">
+            <h1>Login de Cliente</h1>
+            <form action="login_user.php" method="POST">
+                <label for="email">Email:</label>
+                <input type="email" name="email" placeholder="Ingresa tu email" required>
 
-            <label for="password">Contraseña:</label>
-            <input type="password" name="password" required>
+                <label for="password">Contraseña:</label>
+                <input type="password" name="password" placeholder="Ingresa tu contraseña" required>
 
-            <button type="submit">Iniciar Sesión</button>
-        </form>
-        <?php if (isset($error)): ?>
-            <p style="color:red;"><?php echo $error; ?></p>
-        <?php endif; ?>
-    </main>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+
+            <?php if (isset($error)): ?>
+                <div class="alert-card">
+                    <p><?php echo htmlspecialchars($error); ?></p>
+                </div>
+            <?php endif; ?>
+
+            <!-- Enlace al registro de usuario -->
+            <p class="register-link">¿No tienes cuenta? <a href="registro_user.php">Regístrate aquí</a></p>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,6 +1,8 @@
 <?php
 require 'includes/db_user.php';
 
+$error = null;
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = trim($_POST['nombre']);
     $email = trim($_POST['email']);
@@ -20,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         try {
             $query->execute();
-            header("Location: login_user.php");
+            header("Location: login_user.php?registro=exitoso");
             exit;
         } catch (PDOException $e) {
             if ($e->getCode() == 23000) { // Código para error de clave duplicada
@@ -39,44 +41,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Cliente</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/El_Rincon_de_Melo/assets/css/global.css">
+    <link rel="stylesheet" href="/El_Rincon_de_Melo/assets/css/user/registro_user.css">
 </head>
 <body>
-    <header>
-        <h1>Registro de Cliente</h1>
-    </header>
-    <main>
-        <form action="registro_user.php" method="POST" id="registroForm">
-            <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" required>
+    <div class="main-wrapper">
+        <div class="register-container">
+            <h1>Registro de Cliente</h1>
+            <form action="registro_user.php" method="POST" id="registroForm">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" placeholder="Ingresa tu nombre" required>
 
-            <label for="email">Email:</label>
-            <input type="email" name="email" required>
+                <label for="email">Email:</label>
+                <input type="email" name="email" placeholder="Ingresa tu email" required>
 
-            <label for="password">Contraseña:</label>
-            <input type="password" name="password" required>
+                <label for="password">Contraseña:</label>
+                <input type="password" name="password" placeholder="Crea una contraseña" required>
 
-            <label for="confirm_password">Confirmar Contraseña:</label>
-            <input type="password" name="confirm_password" required>
+                <label for="confirm_password">Confirmar Contraseña:</label>
+                <input type="password" name="confirm_password" placeholder="Confirma tu contraseña" required>
 
-            <button type="submit">Registrarse</button>
-        </form>
+                <button type="submit">Registrarse</button>
+            </form>
 
-        <?php if (isset($error)): ?>
-            <p style="color:red;"><?php echo $error; ?></p>
-        <?php endif; ?>
-    </main>
+            <?php if (isset($error)): ?>
+                <div class="alert-card">
+                    <p><?php echo htmlspecialchars($error); ?></p>
+                </div>
+            <?php endif; ?>
 
-    <script>
-        document.querySelector('#registroForm').addEventListener('submit', function(e) {
-            const password = document.querySelector('input[name="password"]').value;
-            const confirmPassword = document.querySelector('input[name="confirm_password"]').value;
-
-            if (password !== confirmPassword) {
-                e.preventDefault();
-                alert('Las contraseñas no coinciden.');
-            }
-        });
-    </script>
+            <p class="login-link">¿Ya tienes una cuenta? <a href="login_user.php">Inicia sesión aquí</a></p>
+        </div>
+    </div>
 </body>
 </html>

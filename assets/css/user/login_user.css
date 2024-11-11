@@ -1,0 +1,79 @@
+/* Contenedor Principal */
+.main-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+/* Contenedor del Login */
+.login-container {
+    max-width: 400px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-container h1 {
+    font-size: 24px;
+    color: #4793AF;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #FFC470;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-container button:hover {
+    background-color: #DD5746;
+}
+
+/* Tarjeta de alerta */
+.alert-card {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #DD5746;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Enlace para registro */
+.register-link {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+.register-link a {
+    color: #4793AF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}

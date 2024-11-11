@@ -12,18 +12,27 @@ error_reporting(E_ALL); // Seguir reportando todos los errores en los logs
 require 'includes/db_admin.php'; // Conexión a la base de datos
 
 if (isset($_POST['login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
 
+    // Consultar en la tabla `usuarios`
     $query = $pdo->prepare("SELECT * FROM usuarios WHERE username = :username");
     $query->bindParam(':username', $username);
     $query->execute();
     $user = $query->fetch(PDO::FETCH_ASSOC);
 
+    // Si no encuentra en `usuarios`, buscar en `administradores`
+    if (!$user) {
+        $query = $pdo->prepare("SELECT * FROM administradores WHERE email = :username");
+        $query->bindParam(':username', $username);
+        $query->execute();
+        $user = $query->fetch(PDO::FETCH_ASSOC);
+    }
+
     if ($user) {
         if (password_verify($password, $user['password'])) {
             $_SESSION['admin_logged_in'] = true;
-            $_SESSION['admin_username'] = $user['username'];
+            $_SESSION['admin_username'] = $user['username'] ?? $user['nombre']; // `username` en usuarios, `nombre` en administradores
             header("Location: index_admin.php");
             exit;
         } else {
@@ -49,7 +58,7 @@ if (isset($_POST['login'])) {
         <div class="login-container">
             <h1>Login Administrador</h1>
             <form action="login_admin.php" method="POST">
-                <input type="text" name="username" placeholder="Usuario" required>
+                <input type="text" name="username" placeholder="Usuario o Email" required>
                 <input type="password" name="password" placeholder="Contraseña" required>
                 <button type="submit" name="login">Iniciar Sesión</button>
             </form>
