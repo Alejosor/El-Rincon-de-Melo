@@ -41,7 +41,7 @@ $usuarios = $query->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <header>
         <h1>Gestión de Usuarios</h1>
-        <a href="index_admin.php" class="return-button">Regresar</a>
+        <a href="index_admin.php" class="return-button">Volver al Panel</a>
     </header>
     <main>
     <div class="filter-wrapper">
