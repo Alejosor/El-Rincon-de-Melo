@@ -1,0 +1,85 @@
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background-color: #4793AF;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.return-button {
+    background-color: #DD5746;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.return-button:hover {
+    background-color: #8B322C;
+}
+
+/* Boleta Detalle */
+.boleta-detalle {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.boleta-detalle h2 {
+    text-align: center;
+    color: #4793AF;
+}
+
+.boleta-detalle p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+thead th {
+    background-color: #4793AF;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+td, th {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #ddd;
+}
