@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!in_array($imagen_tipo, ['image/jpeg', 'image/png', 'image/webp'])) {
             $error = "La imagen debe ser de tipo JPG, PNG o WEBP.";
         } else {
-            $directorio_destino = __DIR__ . '/uploads/';
+            $directorio_destino = 'uploads/'; // Ruta relativa al proyecto
             if (!is_dir($directorio_destino)) {
                 mkdir($directorio_destino, 0777, true);
             }
@@ -53,10 +53,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $query->bindParam(':descripcion', $descripcion);
             $query->bindParam(':precio', $precio);
             $query->bindParam(':stock', $stock);
-            $query->bindParam(':imagen', $imagen_ruta);
+            $query->bindParam(':imagen', $imagen_ruta); // Guardamos la ruta relativa
             $query->execute();
 
-            header("Location: productos.php");
+            header("Location: productos.php?mensaje=Producto añadido correctamente");
             exit;
         } catch (PDOException $e) {
             $error = "Error al guardar el producto: " . $e->getMessage();

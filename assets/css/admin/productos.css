@@ -1,0 +1,151 @@
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background-color: #4793AF;
+    color: white;
+    padding: 25px;
+    text-align: center;
+    position: relative;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.return-button {
+    background-color: #DD5746;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    position: absolute;
+    top: 25px;
+    right: 20px; /* Mueve el botón a la derecha */
+}
+
+.return-button:hover {
+    background-color: #8B322C;
+    text-decoration: none;
+}
+
+/* Header Actions */
+.header-actions {
+    display: flex;
+    justify-content: flex-start;
+    margin: 20px 0;
+}
+
+.create-btn {
+    background-color: #FFC470;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.create-btn:hover {
+    background-color: #DD5746;
+    color: white;
+}
+
+/* Main */
+main {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    background-color: #4793AF;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #e0f7fa;
+}
+
+td, th {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+td {
+    vertical-align: top;
+}
+
+/* Acciones */
+td a {
+    color: #FFC470;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+td a:hover {
+    color: #DD5746;
+}
+
+/* Botones de acción */
+table a {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #FFC470;
+    color: black;
+}
+
+table a:hover {
+    background-color: #DD5746;
+    color: white;
+}
+
+.alert-card {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    max-width: 600px; /* Ajuste del ancho máximo */
+    margin-left: auto; /* Centramos horizontalmente */
+    margin-right: auto;
+}
+
+.alert-card.success {
+    background-color: #4CAF50; /* Verde para éxito */
+    color: white;
+}
+
+.alert-card.error {
+    background-color: #DD5746; /* Rojo ladrillo para errores */
+    color: white;
+}
+
+.alert-card p {
+    margin: 0;
+    font-size: 16px;
+}
