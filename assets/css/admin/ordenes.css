@@ -1,0 +1,134 @@
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background-color: #4793AF;
+    color: white;
+    padding: 25px;
+    text-align: center;
+    position: relative;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+header a {
+    background-color: #DD5746;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    position: absolute;
+    top: 25px;
+    right: 20px;
+}
+
+header a:hover {
+    background-color: #8B322C;
+}
+
+/* Main Container */
+main {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead th {
+    background-color: #4793AF;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #e0f7fa;
+}
+
+td, th {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+td {
+    vertical-align: middle;
+}
+
+/* Action Buttons */
+form button, a {
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 14px; /* Tamaño de fuente unificado */
+    cursor: pointer;
+    display: inline-block;
+}
+
+/* Confirmar Button */
+button[name="confirmar_orden"] {
+    background-color: #4CAF50; /* Verde para confirmar */
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+button[name="confirmar_orden"]:hover {
+    background-color: #388E3C;
+    color: white;
+}
+
+/* Eliminar Button */
+button[name="eliminar_orden"] {
+    background-color: #FFC470;
+    color: black;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+button[name="eliminar_orden"]:hover {
+    background-color: #DD5746;
+    color: white;
+}
+
+/* Ver Detalle Button */
+a[href*="detalle_orden.php"] {
+    background-color: #FFC470;
+    color: black;
+    transition: background-color 0.3s ease;
+}
+
+a[href*="detalle_orden.php"]:hover {
+    background-color: #DD5746;
+    color: white;
+}
+
+/* Empty Table Message */
+tbody td[colspan] {
+    text-align: center;
+    font-weight: bold;
+    color: #555;
+}

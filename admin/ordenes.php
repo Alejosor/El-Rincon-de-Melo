@@ -1,9 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-?>
-<?php
 session_start();
 if (!isset($_SESSION['admin_logged_in'])) {
     header("Location: login_admin.php");
@@ -11,11 +6,6 @@ if (!isset($_SESSION['admin_logged_in'])) {
 }
 
 require 'includes/db_admin.php';
-
-// Habilitar la visualización de errores para diagnóstico
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 // Obtener las órdenes de la base de datos
 $query = $pdo->query("SELECT * FROM ordenes ORDER BY fecha DESC");
@@ -54,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Órdenes</title>
-    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="/El_Rincon_de_Melo/assets/css/admin/ordenes.css">
 </head>
 <body>
     <header>
@@ -85,10 +75,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <td>S/<?php echo htmlspecialchars($orden['total']); ?></td>
                             <td><?php echo isset($orden['estado']) ? htmlspecialchars($orden['estado']) : 'Pendiente'; ?></td>
                             <td>
-                                <form action="ordenes.php" method="POST" style="display:inline;">
-                                    <input type="hidden" name="id_orden" value="<?php echo htmlspecialchars($orden['id']); ?>">
-                                    <button type="submit" name="confirmar_orden">Confirmar</button>
-                                </form>
+                                <?php if ($orden['estado'] !== 'Confirmada'): ?>
+                                    <form action="ordenes.php" method="POST" style="display:inline;">
+                                        <input type="hidden" name="id_orden" value="<?php echo htmlspecialchars($orden['id']); ?>">
+                                        <button type="submit" name="confirmar_orden">Confirmar</button>
+                                    </form>
+                                <?php endif; ?>
                                 <form action="ordenes.php" method="POST" style="display:inline;">
                                     <input type="hidden" name="id_orden" value="<?php echo htmlspecialchars($orden['id']); ?>">
                                     <button type="submit" name="eliminar_orden" onclick="return confirm('¿Estás seguro de eliminar esta orden?');">Eliminar</button>
