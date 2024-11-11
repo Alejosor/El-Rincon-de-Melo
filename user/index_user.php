@@ -18,7 +18,7 @@ if (!isset($_SESSION['carrito'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
     $id_producto = $_POST['id_producto'];
-    $cantidad = $_POST['cantidad'];
+    $cantidad = (int)$_POST['cantidad'];
 
     if (isset($_SESSION['carrito'][$id_producto])) {
         $_SESSION['carrito'][$id_producto] += $cantidad;
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
         $_SESSION['carrito'][$id_producto] = $cantidad;
     }
 
-    header("Location: index_user.php?producto_agregado=true");
+    header("Location: carrito.php");
     exit;
 }
 ?>
@@ -55,9 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
     <main>
         <section>
             <h2>Nuestros Productos</h2>
-            <?php if (isset($_GET['producto_agregado'])): ?>
-                <div class="alert success">Producto añadido al carrito.</div>
-            <?php endif; ?>
             <div class="productos-container">
                 <?php foreach ($productos as $producto): ?>
                     <div class="producto-card">

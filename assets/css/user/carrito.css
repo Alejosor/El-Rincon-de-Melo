@@ -1,0 +1,173 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background-color: #4793AF; /* Azul suave */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative; /* Añadido para posicionamiento del botón */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* Botón Volver a Productos */
+header a {
+    color: white;
+    text-decoration: none;
+    background-color: #DD5746;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    position: absolute; /* Para posicionar a la derecha */
+    right: 20px; /* Distancia del borde derecho */
+    top: 50%; /* Centrado verticalmente */
+    transform: translateY(-50%);
+    transition: background-color 0.3s;
+}
+
+header a:hover {
+    background-color: #8B322C;
+}
+
+/* Main Content */
+main {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+thead th {
+    background-color: #4793AF; /* Azul suave */
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #e3f2fd;
+}
+
+td, th {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+/* Button Styles */
+form button {
+    background-color: #FFC470; /* Naranja claro */
+    color: black;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #DD5746; /* Rojo ladrillo */
+    color: white;
+}
+
+/* Confirm Button */
+a.btn {
+    display: inline-block;
+    background-color: #FFC470; /* Naranja claro */
+    color: black;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+a.btn:hover {
+    background-color: #DD5746;
+    color: white;
+}
+
+/* Footer */
+footer {
+    background-color: #8B322C; /* Rojo oscuro */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 14px;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    main {
+        padding: 15px;
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tbody tr {
+        margin-bottom: 15px;
+    }
+
+    td {
+        padding-left: 50%;
+        position: relative;
+        text-align: right;
+    }
+
+    td:before {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        content: attr(data-label);
+        text-align: left;
+        font-weight: bold;
+    }
+
+    a.btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+}

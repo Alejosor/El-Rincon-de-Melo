@@ -2,24 +2,24 @@
 session_start();
 require 'includes/db_user.php';
 
-if (!isset($_SESSION['cart'])) {
-    $_SESSION['cart'] = [];
+// Inicializar el carrito si no existe
+if (!isset($_SESSION['carrito'])) {
+    $_SESSION['carrito'] = [];
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
-    $id_producto = $_POST['id_producto'];
-    $cantidad = $_POST['cantidad'];
-
-    if (isset($_SESSION['cart'][$id_producto])) {
-        $_SESSION['cart'][$id_producto] += $cantidad;
-    } else {
-        $_SESSION['cart'][$id_producto] = $cantidad;
-    }
-}
-
+// Manejo de eliminación de productos del carrito
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_from_cart'])) {
     $id_producto = $_POST['id_producto'];
-    unset($_SESSION['cart'][$id_producto]);
+    unset($_SESSION['carrito'][$id_producto]);
+}
+
+// Obtener los detalles de los productos en el carrito
+$productos_carrito = [];
+if (!empty($_SESSION['carrito'])) {
+    $placeholders = implode(',', array_fill(0, count($_SESSION['carrito']), '?'));
+    $query = $pdo->prepare("SELECT * FROM productos WHERE id IN ($placeholders)");
+    $query->execute(array_keys($_SESSION['carrito']));
+    $productos_carrito = $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
 $total = 0;
@@ -31,51 +31,56 @@ $total = 0;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/El_Rincon_de_Melo/assets/css/user/carrito.css">
 </head>
 <body>
     <header>
         <h1>Carrito de Compras</h1>
-        <a href="index_user.php">Volver a Productos</a>
+        <a href="index_user.php" class="btn-back">Volver a Productos</a>
     </header>
     <main>
-        <table>
-            <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Cantidad</th>
-                    <th>Precio</th>
-                    <th>Subtotal</th>
-                    <th>Acción</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($_SESSION['cart'] as $id_producto => $cantidad):
-                    $query = $pdo->prepare("SELECT * FROM productos WHERE id = :id");
-                    $query->bindParam(':id', $id_producto);
-                    $query->execute();
-                    $producto = $query->fetch(PDO::FETCH_ASSOC);
-
-                    $subtotal = $producto['precio'] * $cantidad;
-                    $total += $subtotal;
-                ?>
+        <?php if (!empty($productos_carrito)): ?>
+            <table>
+                <thead>
                     <tr>
-                        <td><?php echo $producto['nombre']; ?></td>
-                        <td><?php echo $cantidad; ?></td>
-                        <td><?php echo $producto['precio']; ?></td>
-                        <td><?php echo $subtotal; ?></td>
-                        <td>
-                            <form action="carrito.php" method="POST">
-                                <input type="hidden" name="id_producto" value="<?php echo $id_producto; ?>">
-                                <button type="submit" name="remove_from_cart">Eliminar</button>
-                            </form>
-                        </td>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Subtotal</th>
+                        <th>Acción</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-        <h3>Total: S/<?php echo $total; ?></h3>
-        <a href="confirmacion.php">Confirmar Orden</a>
+                </thead>
+                <tbody>
+                    <?php foreach ($productos_carrito as $producto):
+                        $cantidad = $_SESSION['carrito'][$producto['id']];
+                        $subtotal = $producto['precio'] * $cantidad;
+                        $total += $subtotal;
+                    ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($producto['nombre']); ?></td>
+                            <td><?php echo $cantidad; ?></td>
+                            <td>S/<?php echo number_format($producto['precio'], 2); ?></td>
+                            <td>S/<?php echo number_format($subtotal, 2); ?></td>
+                            <td>
+                                <form action="carrito.php" method="POST">
+                                    <input type="hidden" name="id_producto" value="<?php echo $producto['id']; ?>">
+                                    <button type="submit" name="remove_from_cart" class="btn-remove">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            <h3>Total: S/<?php echo number_format($total, 2); ?></h3>
+            <form action="confirmar_orden.php" method="POST">
+                <button type="submit" name="confirm_order" class="btn-confirm">Confirmar Orden</button>
+            </form>
+        <?php else: ?>
+            <p>Tu carrito está vacío.</p>
+        <?php endif; ?>
     </main>
+    <footer>
+        <p>&copy; 2024 El Rincón de Melo. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>
