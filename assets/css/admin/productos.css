@@ -41,11 +41,12 @@ header h1 {
 .header-actions {
     display: flex;
     justify-content: flex-start;
+    gap: 10px; /* Espaciado entre botones */
     margin: 20px 0;
 }
 
 .create-btn {
-    background-color: #FFC470;
+    background-color: #FFC470; /* Naranja claro */
     color: black;
     padding: 10px 20px;
     text-decoration: none;
@@ -55,9 +56,10 @@ header h1 {
 }
 
 .create-btn:hover {
-    background-color: #DD5746;
+    background-color: #DD5746; /* Rojo ladrillo */
     color: white;
 }
+
 
 /* Main */
 main {

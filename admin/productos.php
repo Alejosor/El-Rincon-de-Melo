@@ -44,6 +44,7 @@ $productos_inactivos = $query_inactivos->fetchAll(PDO::FETCH_ASSOC);
     <main>
         <div class="header-actions">
             <a href="nuevo_producto.php" class="btn create-btn">Añadir Producto</a>
+            <a href="reporte_productos.php" class="btn create-btn">Reporte de Productos</a>
         </div>
 
         <!-- Tabla de productos activos -->

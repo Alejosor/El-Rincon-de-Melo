@@ -11,8 +11,9 @@ header {
     background-color: #4793AF;
     color: white;
     padding: 25px;
-    text-align: center;
-    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header h1 {
@@ -20,19 +21,23 @@ header h1 {
     font-size: 28px;
 }
 
-header a {
+.header-buttons {
+    display: flex;
+    gap: 10px; /* Espaciado entre botones */
+}
+
+.header-buttons .btn {
     background-color: #DD5746;
     color: white;
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
-    position: absolute;
-    top: 25px;
-    right: 20px;
+    font-size: 16px; /* Tamaño unificado */
+    transition: background-color 0.3s ease;
 }
 
-header a:hover {
+.header-buttons .btn:hover {
     background-color: #8B322C;
 }
 

@@ -49,7 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <header>
         <h1>Gestión de Órdenes</h1>
-        <a href="index_admin.php">Volver al Panel</a>
+        <div class="header-buttons">
+            <a href="reporte_pedidos.php" class="btn">Generar Reporte de Pedidos</a>
+            <a href="index_admin.php" class="btn">Volver al Panel</a>
+        </div>
     </header>
     <main>
         <table>
