@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 18-11-2024 a las 20:13:51
+-- Tiempo de generación: 22-11-2024 a las 06:55:34
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -83,27 +83,17 @@ CREATE TABLE `detalle_ordenes` (
 --
 
 INSERT INTO `detalle_ordenes` (`id`, `id_orden`, `id_producto`, `cantidad`, `subtotal`) VALUES
-(1, 5, 3, 3, 9.00),
-(2, 5, 4, 5, 5.00),
-(6, 8, 2, 1, 3.00),
-(7, 8, 14, 1, 0.50),
-(8, 8, 4, 1, 1.00),
-(9, 9, 12, 1, 3.00),
-(10, 9, 14, 1, 3.00),
-(11, 9, 2, 1, 3.00),
-(12, 10, 4, 1, 1.00),
-(13, 11, 2, 3, 6.00),
-(14, 11, 4, 2, 4.00),
-(15, 11, 12, 2, 4.00),
-(16, 12, 15, 2, 1.20),
-(17, 13, 4, 2, 4.00),
-(18, 13, 12, 2, 4.00),
-(19, 14, 12, 2, 4.00),
-(20, 15, 4, 2, 6.00),
-(21, 15, 15, 1, 3.00),
-(22, 15, 2, 1, 3.00),
-(23, 16, 3, 2, 4.00),
-(24, 16, 12, 2, 4.00);
+(31, 19, 12, 2, 4.00),
+(32, 19, 3, 3, 9.00),
+(33, 19, 15, 1, 0.60),
+(34, 19, 14, 3, 1.50),
+(35, 20, 14, 2, 6.00),
+(36, 20, 15, 2, 6.00),
+(37, 20, 3, 1, 3.00),
+(38, 21, 12, 1, 0.50),
+(39, 21, 14, 1, 0.50),
+(40, 22, 4, 1, 0.50),
+(41, 22, 14, 3, 1.50);
 
 -- --------------------------------------------------------
 
@@ -124,16 +114,10 @@ CREATE TABLE `ordenes` (
 --
 
 INSERT INTO `ordenes` (`id`, `fecha`, `total`, `estado`, `id_cliente`) VALUES
-(5, '2024-11-07 12:52:25', 14.00, 'Confirmada', NULL),
-(8, '2024-11-11 01:10:24', 4.50, 'Confirmada', NULL),
-(9, '2024-11-11 03:53:45', 5.50, 'Pendiente', 2),
-(10, '2024-11-11 03:54:03', 1.00, 'Pendiente', 2),
-(11, '2024-11-11 03:58:07', 15.00, 'Pendiente', 2),
-(12, '2024-11-11 13:12:49', 1.20, 'Confirmada', 2),
-(13, '2024-11-11 13:21:08', 6.00, 'Pendiente', 2),
-(14, '2024-11-14 17:08:31', 4.00, 'Pendiente', 2),
-(15, '2024-11-14 17:09:07', 5.60, 'Pendiente', 2),
-(16, '2024-11-18 14:07:43', 10.00, 'Confirmada', 2);
+(19, '2024-11-21 23:33:18', 15.10, 'Confirmada', 2),
+(20, '2024-11-22 00:47:22', 5.20, 'Pendiente', 2),
+(21, '2024-11-22 00:49:42', 2.50, 'Pendiente', 2),
+(22, '2024-11-22 00:52:00', 2.50, 'Pendiente', 2);
 
 -- --------------------------------------------------------
 
@@ -156,12 +140,12 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `precio`, `stock`, `imagen`, `activo`) VALUES
-(2, 'Inka Kola 500 ml', 'Botella de Inka Kola de 500ml', 3.00, 6, 'uploads/6731c855134dc-inka_kola.jpg', 1),
-(3, 'Coca Cola 500 ml', 'Botella de Coca Cola de 500ml', 3.00, 5, 'uploads/6731c85e298e3-coca_cola.jpg', 1),
-(4, 'Inka Chips', 'Bolsa PersonaL', 1.00, 4, 'uploads/6731c86acee73-inka_chips.jpg', 1),
-(12, 'Frugo del Valle Naranja 500ml', 'Sabor naranja', 2.00, 5, 'uploads/6731c8737cd7b-frugo_del_valle_naranja_500ml.jpg', 1),
-(14, 'Galletas de Soda Field con Chocolate', 'eeee', 0.50, 9, 'uploads/673193fe75cf4-galleta-soda.jpg', 1),
-(15, 'Glacitas de Chocolate', 'Unidad de Glacitas', 0.60, 10, 'uploads/673248bc5fe1e-glacitas_chocolate.jpg', 1);
+(2, 'Inka Kola 500 ml', 'Botella de Inka Kola de 500ml', 3.00, 20, 'uploads/6731c855134dc-inka_kola.jpg', 1),
+(3, 'Coca Cola 500 ml', 'Botella de Coca Cola de 500ml', 3.00, 20, 'uploads/6731c85e298e3-coca_cola.jpg', 1),
+(4, 'Inka Chips', 'Bolsa PersonaL', 1.00, 20, 'uploads/6731c86acee73-inka_chips.jpg', 1),
+(12, 'Frugo del Valle Naranja 500ml', 'Sabor naranja', 2.00, 20, 'uploads/6731c8737cd7b-frugo_del_valle_naranja_500ml.jpg', 1),
+(14, 'Galletas de Soda Field con Chocolate', 'eeee', 0.50, 20, 'uploads/673193fe75cf4-galleta-soda.jpg', 1),
+(15, 'Glacitas de Chocolate', 'Unidad de Glacitas', 0.60, 20, 'uploads/673248bc5fe1e-glacitas_chocolate.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -248,13 +232,13 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `detalle_ordenes`
 --
 ALTER TABLE `detalle_ordenes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de la tabla `ordenes`
 --
 ALTER TABLE `ordenes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
