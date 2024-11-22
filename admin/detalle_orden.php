@@ -16,7 +16,7 @@ if (isset($_GET['id'])) {
 
     // Obtener los detalles de la orden
     $query = $pdo->prepare("
-        SELECT do.id_producto, p.nombre AS producto, do.cantidad, do.subtotal, 
+        SELECT do.id_producto, p.nombre AS producto, p.precio AS precio_unitario, do.cantidad, do.subtotal, 
                o.fecha, o.total, 
                COALESCE(c.nombre, 'Cliente no especificado') AS cliente
         FROM detalle_ordenes do
@@ -32,6 +32,9 @@ if (isset($_GET['id'])) {
     if (empty($detalles)) {
         die("No se encontraron detalles para la orden #$id_orden.");
     }
+
+    // Obtener el nombre del administrador logueado
+    $atendido_por = isset($_SESSION['admin_username']) ? $_SESSION['admin_username'] : 'Comprado vía web';
 } else {
     header("Location: ordenes.php");
     exit;
@@ -55,12 +58,14 @@ if (isset($_GET['id'])) {
         <div class="boleta-detalle">
             <h2>Boleta de Venta</h2>
             <p><strong>Cliente:</strong> <?php echo htmlspecialchars($detalles[0]['cliente']); ?></p>
+            <p><strong>Atendido por:</strong> <?php echo htmlspecialchars($atendido_por); ?></p>
             <p><strong>Fecha de Compra:</strong> <?php echo htmlspecialchars($detalles[0]['fecha']); ?></p>
             <hr>
             <table>
                 <thead>
                     <tr>
                         <th>Producto</th>
+                        <th>Precio Unitario</th>
                         <th>Cantidad</th>
                         <th>Subtotal</th>
                     </tr>
@@ -69,6 +74,7 @@ if (isset($_GET['id'])) {
                     <?php foreach ($detalles as $detalle): ?>
                         <tr>
                             <td><?php echo htmlspecialchars($detalle['producto']); ?></td>
+                            <td>S/<?php echo number_format($detalle['precio_unitario'], 2); ?></td>
                             <td><?php echo htmlspecialchars($detalle['cantidad']); ?></td>
                             <td>S/<?php echo number_format($detalle['subtotal'], 2); ?></td>
                         </tr>
